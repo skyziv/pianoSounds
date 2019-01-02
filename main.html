@@ -1,0 +1,99 @@
+ｂ<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pianoSounds</title>
+    <style>
+        body{
+            width: 100%;
+            height: 800px;
+            position: relative;
+            background: url('./concert.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .box{
+            position: fixed;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        div>div{
+            width: 80px;
+            height: 80px;
+            border: 1px solid;
+            color: whitesmoke;
+            font-size: 34px;
+            line-height: 70px;
+            text-align: center;
+        }
+        div>div:hover{
+            cursor: pointer;
+            border: 2px solid;
+            font-weight: bolder;
+            box-shadow: 1px 1px 2px 3px whitesmoke;
+        }
+        .play{
+            transition: transform 0.5s;
+            transform: scale(1.1);
+            box-shadow: 2px 2px 3px 5px whitesmoke;
+            border: 5px solid yellow;
+            color: yellow;
+        }
+        @media only screen and (max-width: 420px) {
+            .box{
+               flex-direction: column;
+               position: absolute;
+               left: 35%;
+               top: 0;
+               bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>   
+    <div class="box">
+            <div key-code="65" class="key">A</div>
+            <div key-code="83" class="key">S</div>
+            <div key-code="68" class="key">D</div>
+            <div key-code="70" class="key">F</div>
+            <div key-code="72" class="key">H</div>
+            <div key-code="74" class="key">J</div>
+            <div key-code="75" class="key">K</div>
+            <div key-code="76" class="key">L</div>
+    </div>
+    <audio key-code="65" src="./sonds/pianoA.mp3"></audio>
+    <audio key-code="83" src="./sonds/pianoB.mp3"></audio>
+    <audio key-code="68" src="./sonds/pianoC.mp3"></audio>
+    <audio key-code="70" src="./sonds/pianoC2.mp3"></audio>
+    <audio key-code="72" src="./sonds/pianoD.mp3"></audio>
+    <audio key-code="74" src="./sonds/pianoE.mp3"></audio>
+    <audio key-code="75" src="./sonds/pianoF.mp3"></audio>
+    <audio key-code="76" src="./sonds/pianoG.mp3"></audio>
+    <script>
+       //發出聲音
+       window.addEventListener('keydown', playAudio)
+
+       function playAudio(e) {
+       const audio = document.querySelector(`audio[key-code="${e.keyCode}"]`)
+        audio.play()
+       //加上特效
+       const key = document.querySelector(`div[key-code="${e.keyCode}"]`)
+       key.classList.add('play')
+       }
+
+       //移除特效
+       const keys = Array.from(document.querySelectorAll('.key'))
+       keys.forEach(el =>{
+           el.addEventListener('transitionend', removeClass)
+       })
+       function removeClass(e) {
+           e.target.classList.remove('play')
+       }
+
+    </script>  
+</body>
+</html>
