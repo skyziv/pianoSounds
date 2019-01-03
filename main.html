@@ -58,13 +58,13 @@
             cursor: pointer;
         }
         #fakeInput{
-            visibility: hidden;
+            opacity: 0;
         }
     </style>
 </head>
 <body>
     <label for="fakeInput">open mobile keyboard</label>
-    <input type="search" id="fakeInput">   
+    <input type="url" id="fakeInput">   
     <div class="box">
             <div key-code="65" class="key">A</div>
             <div key-code="83" class="key">S</div>
@@ -103,7 +103,7 @@
        function removeClass(e) {
            e.target.classList.remove('play')
        }
-       
+
     </script>  
 </body>
 </html>
